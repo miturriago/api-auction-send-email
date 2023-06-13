@@ -1,0 +1,22 @@
+org: devlovelace
+app: api-auction-send-email
+service: api-auction-send-email
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  timeout: 180
+  memorySize: 256
+
+functions:
+  generatePDF:
+    handler: index.sendEmail
+    timeout: 180
+    memorySize: 256
+    events:
+      - http:
+          path: sendEmail
+          method: post
+          cors: true # <-- CORS!
